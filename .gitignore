@@ -23,6 +23,7 @@
 TAGS
 Makefile
 autom4te.cache
+config.h
 config.h.in
 config.status
 configure
