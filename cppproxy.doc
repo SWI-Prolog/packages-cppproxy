@@ -6,9 +6,9 @@
 \makeindex
 
 \onefile
-\htmloutput{html}				% Output directory
-\htmlmainfile{index}				% Main document file
-\bodycolor{white}				% Page colour
+\htmloutput{.}				% Output directory
+\htmlmainfile{cppproxy}			% Main document file
+\bodycolor{white}			% Page colour
 
 \begin{document}
 
@@ -17,7 +17,7 @@
 	HCS, \\
 	University of Amsterdam \\
 	The Netherlands \\
-	E-mail: \email{wielemak@science.uva.nl}}
+	E-mail: \email{J.Wielemaker@vu.nl}}
 
 \maketitle
 
@@ -82,7 +82,7 @@ Using sockets connecting to a continuously running multi-threaded Prolog
 server does keep access to the Prolog toplevel, offers very short
 startup times and allows to distribute the applications over multiple
 hosts on the network.  The price is that it is way harder to setup
-the communication (something must ensure the server is running and 
+the communication (something must ensure the server is running and
 allocate a port for it) and the server must be written thread-safe.
 \end{itemlist}
 
@@ -141,7 +141,7 @@ Using the Prolog HTTP server is another alternative.  HTTP provides the
 basic message \jargon{envelope}. The message content is still undefined.
 SOAP (an XML based content format) can be used here.  Backtracking over
 solutions is hard to implement based on the stateless HTTP protocol.
-The approach is much more complicated and the various protocol layers 
+The approach is much more complicated and the various protocol layers
 require much more data and processing time.  Experience show latency
 times of approx.\ a few milliseconds, where our server shows latency
 times of approx.\ 0.1 millisecond (AMD 1600+, SuSE Linux).
@@ -271,14 +271,14 @@ are:
 \begin{description}
     \cfunction{void}{initialize}{t1 a1, t2 a2, ...}
 The initialize method is called with as many objects of the proper type
-as there are arguments in the Prolog term.  The primitive types are 
+as there are arguments in the Prolog term.  The primitive types are
 \ctype{long}, (for Prolog integers) \ctype{double} (for Prolog floats)
 and the C++ \jargon{std} class \ctype{string} for atoms.
 
     \cfunction{Type}{get_\textit{field}}{}
 For each named field (see \secref{itfdecl}) a function must be provided
 that extracts the field and returns the appropriate type.  For atom
-typed fields the return value can be an std \ctype{string} or a 
+typed fields the return value can be an std \ctype{string} or a
 plain C \ctype{char*}.
 \end{description}
 
@@ -286,7 +286,7 @@ Below is a possible implementation for the above defined person class.
 
 \begin{code}
 class person
-{ 
+{
 public:
   char *first_name;
   char *last_name;
@@ -375,7 +375,7 @@ fetches all functors with arity 3 defined in Prolog:
 #include <iostream>
 #include "myproxy.h>
 
-int 
+int
 main(int argc, char **argv)
 { MyProxy proxy("localhost", 4224);
 
@@ -425,7 +425,7 @@ sqrt(In, Out) :- Out is sqrt(In).
 #include <iostream>
 #include "myproxy.h>
 
-int 
+int
 main(int argc, char **argv)
 { SqrtProxy proxy("localhost", 4224);
 
