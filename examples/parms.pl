@@ -27,8 +27,8 @@ compile(CPP, Exe) :-
 	port(Port),
 	current_prolog_flag(c_cc, cl), !, % Windows MSVC
 	sformat(Cmd,
-		'cl.exe /nologo /DPORT=~w /DWIN32 /GX \
-		 /I. /I.. /I../../../include /I../../../../include \
+		'cl.exe /nologo /DPORT=~w /DWIN32 /GX \c
+		 /I. /I.. /I../../../include /I../../../../include \c
 		 -o ~w ~w wsock32.lib',
 		[Port, Exe, CPP]),
 %	writeln(Cmd),
