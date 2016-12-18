@@ -33,70 +33,73 @@
 */
 
 :- module(typedef,
-	  [ current_type/2,		% :Type, -Expanded
-	    (type)/1,			% Catch calls
+          [ current_type/2,             % :Type, -Expanded
+            (type)/1,                   % Catch calls
 
-	    op(1199, fx, type)
-	  ]).
+            op(1199, fx, type)
+          ]).
 
 :- meta_predicate
-	current_type(:, -).
+    current_type(:, -).
 
-		 /*******************************
-		 *	    EXPANSION		*
-		 *******************************/
+                 /*******************************
+                 *          EXPANSION           *
+                 *******************************/
 
 type(_) :-
-	throw(error(context_error(directive), _)).
+    throw(error(context_error(directive), _)).
 
 expand_type_term(:- type TypeDecl, Clauses) :-
-	phrase(type_clauses(TypeDecl), Clauses).
+    phrase(type_clauses(TypeDecl), Clauses).
 
 type_clauses(Name=Alias) -->
-	[ 'type alias'(Name, Alias) ].
+    [ 'type alias'(Name, Alias) ].
 type_clauses(Name->Decl) -->
-	{ or_to_list(Decl, List)
-	},
-	[ 'type def'(Name, List)
-	].
+    { or_to_list(Decl, List)
+    },
+    [ 'type def'(Name, List)
+    ].
 
-or_to_list(A|B0, [A|B]) :- !,
-	or_to_list(B0, B).
+or_to_list(A|B0, [A|B]) :-
+    !,
+    or_to_list(B0, B).
 or_to_list(A, [A]).
 
 :- multifile
-	user:term_expansion/2.
+    user:term_expansion/2.
 
 user:term_expansion((:- type TypeDecl), Clauses) :-
-	expand_type_term((:- type TypeDecl), Clauses).
+    expand_type_term((:- type TypeDecl), Clauses).
 
 
-		 /*******************************
-		 *	      QUERY		*
-		 *******************************/
+                 /*******************************
+                 *            QUERY             *
+                 *******************************/
 
-%	current_type(:Name, -Expanded)
+%       current_type(:Name, -Expanded)
 %
-%	Do alias expansion of the  type   Name  and  return the expanded
-%	types. Expanded is a list of allowed types (polymorphism).
+%       Do alias expansion of the  type   Name  and  return the expanded
+%       types. Expanded is a list of allowed types (polymorphism).
 
 current_type(NameSpec, Expanded) :-
-	strip_module(NameSpec, Module, Name),
-	current_type(Module, Name, Expanded).
+    strip_module(NameSpec, Module, Name),
+    current_type(Module, Name, Expanded).
 
 current_type(Module, Name, Expanded) :-
-	current_predicate(_, Module:'type alias'(_, _)),
-	Module:'type alias'(Name, Alias), !,
-	current_type(Module, Alias, Expanded).
+    current_predicate(_, Module:'type alias'(_, _)),
+    Module:'type alias'(Name, Alias),
+    !,
+    current_type(Module, Alias, Expanded).
 current_type(_, Primitive, [Primitive]) :-
-	primitive(Primitive), !.
+    primitive(Primitive), 
+    !.
 current_type(Module, Name, Expanded) :-
-	Module:'type def'(Name, Expanded).
+    Module:'type def'(Name, Expanded).
 
 
-%	primitive(?Type)
+%       primitive(?Type)
 %
-%	True if type is a primitive type
+%       True if type is a primitive type
 
 primitive(integer).
 primitive(atom).
