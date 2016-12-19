@@ -224,7 +224,7 @@ function_name(f(_Module, Goal, Attributes), FName) :-
     option(as(FName), Attributes, PName).
 
 return_type(Attributes, void) :-
-    memberchk(one, Attributes), 
+    memberchk(one, Attributes),
     !.
 return_type(_, int).
 

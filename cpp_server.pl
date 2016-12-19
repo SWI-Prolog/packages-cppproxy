@@ -133,7 +133,7 @@ handle_call2(In, Out, Q) :-
 read_query_open(true, _) :- !.
 read_query_open(false, In) :-
     get_byte(In, Byte),
-    Byte == 0'q, 
+    Byte == 0'q,
     !.         % '
 read_query_open(_, _) :-
     throw(error(communication_error(out_of_sync), _)).
@@ -256,7 +256,7 @@ read_args(I0, Arity, In, Module, Types, Goal) :-
     read_args(I, Arity, In, Module, Types, Goal).
 
 must_include_type(Type, Types) :-
-    memberchk(Type, Types), 
+    memberchk(Type, Types),
     !.
 must_include_type(Type, Types) :-
     throw(error(type_error(Types, Type), _)).

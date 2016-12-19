@@ -91,7 +91,7 @@ current_type(Module, Name, Expanded) :-
     !,
     current_type(Module, Alias, Expanded).
 current_type(_, Primitive, [Primitive]) :-
-    primitive(Primitive), 
+    primitive(Primitive),
     !.
 current_type(Module, Name, Expanded) :-
     Module:'type def'(Name, Expanded).
