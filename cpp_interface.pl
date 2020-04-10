@@ -46,6 +46,7 @@
             op(100,  xf, det)
           ]).
 
+
 :- meta_predicate
     current_cpp_callable(:).
 

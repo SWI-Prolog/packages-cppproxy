@@ -35,11 +35,18 @@
 :- module(cpp_server,
           [ cpp_server/1                % +Options
           ]).
-:- use_module(library(socket)).
-:- use_module(library(debug)).
-:- use_module(library(shlib)).
-:- use_module(cpp_interface).
-:- use_module(typedef).
+:- autoload(cpp_interface,[current_cpp_callable/3]).
+:- autoload(typedef,[current_type/2]).
+:- autoload(library(debug),[debug/3]).
+:- autoload(library(option),[option/3]).
+:- autoload(library(socket),
+	    [ tcp_socket/1,
+	      tcp_setopt/2,
+	      tcp_bind/2,
+	      tcp_listen/2,
+	      tcp_accept/3,
+	      tcp_open_socket/3
+	    ]).
 
 %:- debug(cpp(_)).
 

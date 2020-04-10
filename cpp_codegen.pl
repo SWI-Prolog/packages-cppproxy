@@ -35,11 +35,12 @@
 :- module(cpp_gencode,
           [ cpp_server_code/2           % +File, +Options
           ]).
-:- use_module(typedef).
-:- use_module(cpp_interface).
-:- use_module(library(option)).
-:- use_module(library(debug)).
-:- use_module(library(lists)).
+:- autoload(cpp_interface,[current_cpp_callable/3,current_cpp_type/3]).
+:- autoload(typedef,[current_type/2]).
+:- autoload(library(apply),[maplist/3]).
+:- autoload(library(debug),[assertion/1]).
+:- autoload(library(lists),[append/3,member/2]).
+:- autoload(library(option),[option/3]).
 
 %       cpp_server_code(+File, +Options)
 %
