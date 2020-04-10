@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PL=pl
+PL=swipl
 tests="$*"
 failed=
 
@@ -13,7 +13,7 @@ for test in $tests; do
        echo "FAILED"
        failed="$failed $test"
     fi
-done    
+done
 
 if [ -z "$failed" ]; then
    echo "All tests passed"
