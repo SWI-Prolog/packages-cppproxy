@@ -72,7 +72,7 @@ bugs.
 
     \item [Using pipes]
 By using anonymous pipes between the hosting system and Prolog we
-introduce a seperation that makes it easier to localise problems and
+introduce a separation that makes it easier to localise problems and
 reliably stop and start Prolog. The price is -again- loosing the Prolog
 toplevel, slower communication and pipes only provide a single
 communication channal.
@@ -180,7 +180,7 @@ If \arg{TypeSpec} is of the form \mbox{\arg{Alias} = \arg{Type}},
 \arg{Alias} is an alias for the type named \arg{Type}. If \arg{TypeSpec}
 is of the form \mbox{\arg{Type} {\tt\string->} \arg{Def}}, \arg{Def} is
 the definition of \arg{Type}. Polymorphism is expressed using multiple
-definitions seperated by the \verb$|$ (vertical bar) symbol.%
+definitions separated by the \verb$|$ (vertical bar) symbol.%
 \footnote{The design allows for limited polymorphism, but this is not
 yet part of the current implementation.} A single definition is a term
 whose arguments define the types of the arguments.
