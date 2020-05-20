@@ -64,7 +64,7 @@
 
 %       cpp_server(+Options)
 %
-%       Run a CPP server in a seperate thread
+%       Run a CPP server in a separate thread
 
 cpp_server(Options) :-
     option(port(Port), Options, 4224),

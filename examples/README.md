@@ -14,7 +14,7 @@ messages.
 	?- make_client.
 
 To run the demo start the server using   the command below and the start
-the client in a seperate window.  All   the  clients  are simple console
+the client in a separate window.  All   the  clients  are simple console
 applications printing some results.
 
 	?- start_server.
